@@ -15,12 +15,6 @@
       background-position: center;
       transition: transform 0.5s ease, opacity 0.5s ease;
     }
-    body {
-  cursor: pointer; /* ou: default, help, crosshair, move, wait, etc. */
-}
-body {
-  cursor: url('imagens/simbolo-de-reciclagem.png'), auto;
-}
 
     body.fade-out {
       transform: scale(0.9);
@@ -106,26 +100,6 @@ body {
       }, 500);
     }
   </script>
-  </script>
-  <audio id="somClique" src="sharp-pop-328170.mp3" preload="auto"></audio>
-  <script>
-  const somClique = document.getElementById("somClique");
-
-  // Toca som ao clicar em qualquer botão ou link
-  document.addEventListener("click", function(event) {
-    if (event.target.tagName === "BUTTON" || event.target.tagName === "A") {
-      somClique.currentTime = 0;
-      somClique.play();
-    }
-  });
-
-  function irComAnimacao(destino) {
-    document.body.classList.add('fade-out');
-    setTimeout(() => {
-      window.location.href = destino;
-    }, 500); // tempo da animação em ms
-  }
-</script>
 
 </body>
 </html>

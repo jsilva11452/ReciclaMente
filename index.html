@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <title>Página Inicial - ReciclaMente</title>
@@ -28,13 +28,11 @@
     .botao-animado {
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    
 
     .botao-animado:active {
       transform: scale(0.95);
       box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     }
-    
 
     .titulo-principal {
       font-size: 64px;
@@ -53,14 +51,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-   body {
-  cursor: url('imagens/rrrrr.png') 16 16, auto;
-}
-body {
-  cursor: url('imagens/rrrrr.png'), auto;
-}
-
-
 
     .botao-inicio {
       background-color: rgba(76, 175, 80, 0.9);
@@ -133,30 +123,8 @@ body {
       document.body.classList.add('fade-out');
       setTimeout(() => {
         window.location.href = destino;
-      }, 500); 
+      }, 500); // tempo da animação em ms
     }
-    
   </script>
-  <audio id="somClique" src="sharp-pop-328170.mp3" preload="auto"></audio>
-  <script>
-  const somClique = document.getElementById("somClique");
-
-  // Toca som ao clicar em qualquer botão ou link
-  document.addEventListener("click", function(event) {
-    if (event.target.tagName === "BUTTON" || event.target.tagName === "A") {
-      somClique.currentTime = 0;
-      somClique.play();
-    }
-  });
-
-  function irComAnimacao(destino) {
-    document.body.classList.add('fade-out');
-    setTimeout(() => {
-      window.location.href = destino;
-    }, 500); // tempo da animação em ms
-  }
-</script>
-
-
 </body>
 </html>
