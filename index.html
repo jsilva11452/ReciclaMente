@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Página Inicial - ReciclaMente</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+      background-image: url('imagens/CBR_Blog-Dia-da-Terra-2022 (2).jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      color: white;
+      transition: opacity 0.5s ease-out;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    .botao-animado {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+
+    .botao-animado:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    
+
+    .titulo-principal {
+      font-size: 64px;
+      font-style: italic;
+      font-weight: bold;
+      background-color: rgba(76, 175, 80, 0.85);
+      padding: 25px 60px;
+      border-radius: 30px;
+      font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      user-select: none;
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 10px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+   body {
+  cursor: url('imagens/rrrrr.png') 16 16, auto;
+}
+body {
+  cursor: url('imagens/rrrrr.png'), auto;
+}
+
+
+
+    .botao-inicio {
+      background-color: rgba(76, 175, 80, 0.9);
+      border: none;
+      border-radius: 25px;
+      padding: 15px 20px;
+      font-size: 21px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-weight: bold;
+      user-select: none;
+      font-family: Arial, sans-serif;
+      width: 170px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .botao-inicio:hover {
+      background-color: rgba(56, 135, 56, 0.9);
+    }
+
+    .botoes-container {
+      margin-top: 500px; 
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .botao {
+      background-color: rgba(76, 175, 80, 0.9);
+      border: none;
+      border-radius: 25px;
+      padding: 15px 40px;
+      font-size: 21px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-weight: bold;
+      user-select: none;
+      font-family: Arial, sans-serif;
+      width: 200px;
+      text-align: center;
+    }
+
+    .botao:hover {
+      background-color: rgba(56, 135, 56, 0.9);
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="titulo-principal">ReciclaMente</h1>
+
+  <div class="botoes-container">
+    <a href="#" class="botao-inicio" onclick="irComAnimacao('quiz.html')">Quiz</a>
+    <button class="botao" onclick="irComAnimacao('jogo.html')">Jogar</button>
+    <button class="botao" onclick="irComAnimacao('instrucoes.html')">Instruções</button>
+    <button class="botao" onclick="irComAnimacao('curiosidades.html')">Curiosidades</button>
+  </div>
+
+  <div style="text-align:center; margin-top: 10px;"></div>
+
+  <script>
+    function irComAnimacao(destino) {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = destino;
+      }, 500); 
+    }
+    
+  </script>
+  <audio id="somClique" src="sharp-pop-328170.mp3" preload="auto"></audio>
+  <script>
+  const somClique = document.getElementById("somClique");
+
+  // Toca som ao clicar em qualquer botão ou link
+  document.addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON" || event.target.tagName === "A") {
+      somClique.currentTime = 0;
+      somClique.play();
+    }
+  });
+
+  function irComAnimacao(destino) {
+    document.body.classList.add('fade-out');
+    setTimeout(() => {
+      window.location.href = destino;
+    }, 500); // tempo da animação em ms
+  }
+</script>
+
+
+</body>
+</html>

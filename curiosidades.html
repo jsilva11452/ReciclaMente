@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Curiosidades sobre Reciclagem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8f5e9;
+      margin: 0;
+      padding: 40px;
+      color: #2e7d32;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    body.fade-out {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      font-size: 20px;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .voltar a {
+      font-size: 20px;
+      padding: 10px 20px;
+      background-color: #388e3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+    body {
+  cursor: pointer; /* ou: default, help, crosshair, move, wait, etc. */
+}
+body {
+  cursor: url('imagens/simbolo-de-reciclagem.png'), auto;
+}
+
+    .voltar a:hover {
+      background-color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <h1>Curiosidades sobre Reciclagem e o Jogo</h1>
+  <ul>
+    <li>♻ Uma única pilha pode contaminar 400 mil litros de água se descartada incorretamente.</li>
+    <li>🌱 Reciclar papel ajuda a evitar o desmatamento: 1 tonelada economiza cerca de 20 árvores.</li>
+    <li>⚡ O alumínio reciclado consome 95% menos energia do que a produção a partir da matéria-prima.</li>
+    <li>🧠 Este jogo ajuda-te a aprender a separar corretamente os resíduos e a proteger o ambiente!</li>
+    <li>🗑️ Separar corretamente o lixo reduz a poluição e melhora a eficiência da reciclagem.</li>
+    <li>♻️ O vidro é 100% reciclável e pode ser reciclado infinitamente sem perder qualidade.</li>
+    <li>🧴 Apenas embalagens de plástico limpas e secas devem ser colocadas no ecoponto amarelo.</li>
+    <li>📄 Papel plastificado, sujo ou engordurado não deve ir para o ecoponto azul.</li>
+    <li>🌡️ O lixo mal separado pode contaminar outros materiais e dificultar a reciclagem.</li>
+    <li>🔄 Reciclar uma garrafa de plástico pode poupar energia suficiente para carregar um telemóvel.</li>
+    <li>🧼 Antes de reciclares, enxagua as embalagens para evitar maus odores e contaminação.</li>
+    <li>🚯 Deitar lixo no chão contribui para entupimentos e inundações nas cidades.</li>
+    <li>🌐 Separar os resíduos corretamente é um pequeno gesto com um grande impacto global.</li>
+  </ul>
+  
+
+  <div class="voltar">
+    <a href="#" onclick="voltarComAnimacao(event)">⬅ Voltar ao Início</a>
+  </div>
+
+  <script>
+    function voltarComAnimacao(event) {
+      event.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    }
+  </script>
+  </script>
+  <audio id="somClique" src="sharp-pop-328170.mp3" preload="auto"></audio>
+  <script>
+  const somClique = document.getElementById("somClique");
+
+  // Toca som ao clicar em qualquer botão ou link
+  document.addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON" || event.target.tagName === "A") {
+      somClique.currentTime = 0;
+      somClique.play();
+    }
+  });
+
+  function irComAnimacao(destino) {
+    document.body.classList.add('fade-out');
+    setTimeout(() => {
+      window.location.href = destino;
+    }, 500); // tempo da animação em ms
+  }
+</script>
+</body>
+</html>

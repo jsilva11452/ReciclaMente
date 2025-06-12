@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz da Reciclagem</title>
+  <style>
+    body {
+      background-color: #e6f5e6;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    body.fade-out {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    body.fade-out-voltar {
+      transition: transform 1s ease, opacity 1s ease;
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      color: #4CAF50;
+      font-size: 32px;
+    }
+
+    .pergunta {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .respostas button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #4CAF50;
+      background-color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.5s;
+    }
+
+    .respostas button:hover {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+    }
+
+    .correto {
+      background-color: #4CAF50 !important;
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .incorreto {
+      background-color: #f44336 !important;
+      color: white;
+      border-color: #f44336;
+    }
+    body {
+  cursor: pointer; /* ou: default, help, crosshair, move, wait, etc. */
+}
+body {
+  cursor: url('imagens/simbolo-de-reciclagem.png'), auto;
+}
+
+    #resultado {
+      font-size: 24px;
+      color: #4CAF50;
+      margin-top: 30px;
+      display: none;
+    }
+
+    .voltar {
+      margin-top: 30px;
+    }
+
+    .voltar a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #4CAF50;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .voltar a:hover {
+      text-decoration: underline;
+      color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz da Reciclagem</h1>
+    <div id="progresso" style="font-weight: bold; margin-bottom: 20px;">Pergunta 1 de 10</div>
+    <div id="quiz">
+      <div id="pergunta" class="pergunta"></div>
+      <div id="respostas" class="respostas"></div>
+    </div>
+    <div id="resultado"></div>
+    <div class="voltar">
+      <a href="#" onclick="voltarComAnimacao(event)">⬅ Voltar ao Início</a>
+    </div>
+  </div>
+
+  <audio id="somCorreto" src="successed-295058.mp3"></audio>
+  <audio id="somIncorreto" src="wrong-47985.mp3"></audio>
+
+  <script>
+    const perguntas = [
+      {
+        pergunta: "Qual é a cor do contentor que é usada para o vidro?",
+        opcoes: ["Azul", "Amarelo", "Verde", "Castanho"],
+        correta: "Verde"
+      },
+      {
+        pergunta: "Onde colocamos o papel e o cartão?",
+        opcoes: ["Amarelo", "Azul", "Verde", "Preto"],
+        correta: "Azul"
+      },
+      {
+        pergunta: "Qual destes NÃO é reciclável?",
+        opcoes: ["Garrafa de plástico", "Papel sujo", "Lata", "Jornal"],
+        correta: "Papel sujo"
+      },
+      {
+        pergunta: "O que vai para o contentor amarelo?",
+        opcoes: ["Vidro", "Resíduos orgânicos", "Embalagens de plástico", "Papel"],
+        correta: "Embalagens de plástico"
+      },
+      {
+        pergunta: "Como podemos ajudar o meio ambiente?",
+        opcoes: ["Misturar o lixo", "Queimar o lixo", "Reciclar corretamente", "Atirar lixo para o chão"],
+        correta: "Reciclar corretamente"
+      },
+      {
+        pergunta: "Onde se colocam restos de comida?",
+        opcoes: ["Contentor Azul", "Contentor Amarelo", "Contentor Verde", "Contentor Castanho"],
+        correta: "Contentor Castanho"
+      },
+      {
+        pergunta: "Qual destes objetos vai para o ecoponto amarelo?",
+        opcoes: ["Caixa de papelão", "Garrafa de vidro", "Pacote de leite", "Pilha usada"],
+        correta: "Pacote de leite"
+      },
+      {
+        pergunta: "O que devemos fazer antes de reciclar uma garrafa de plástico?",
+        opcoes: ["Parti-la", "Lavar e escorrer", "Encher com água", "Misturar com papel"],
+        correta: "Lavar e escorrer"
+      },
+      {
+        pergunta: "Qual é o contentor correto para jornais velhos?",
+        opcoes: ["Amarelo", "Azul", "Castanho", "Verde"],
+        correta: "Azul"
+      },
+      {
+        pergunta: "Para onde vai uma lâmpada partida?",
+        opcoes: ["Contentor do vidro", "Contentor indiferenciado", "Ponto eletrão", "Contentor castanho"],
+        correta: "Ponto eletrão"
+      }
+    ];
+
+    let indiceAtual = 0;
+    let pontuacao = 0;
+
+    const perguntaEl = document.getElementById("pergunta");
+    const respostasEl = document.getElementById("respostas");
+    const resultadoEl = document.getElementById("resultado");
+    const quizEl = document.getElementById("quiz");
+    const somCorreto = document.getElementById("somCorreto");
+    const somIncorreto = document.getElementById("somIncorreto");
+
+    function mostrarPergunta() {
+      const atual = perguntas[indiceAtual];
+      document.getElementById("progresso").textContent = `Pergunta ${indiceAtual + 1} de ${perguntas.length}`;
+      perguntaEl.textContent = atual.pergunta;
+      respostasEl.innerHTML = "";
+
+      atual.opcoes.forEach(opcao => {
+        const btn = document.createElement("button");
+        btn.textContent = opcao;
+        btn.onclick = () => verificarRespostaComAnimacao(btn, opcao);
+        respostasEl.appendChild(btn);
+      });
+    }
+
+    function verificarRespostaComAnimacao(botaoClicado, opcaoSelecionada) {
+      const correta = perguntas[indiceAtual].correta;
+      const botoes = respostasEl.querySelectorAll("button");
+
+      botoes.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === correta) {
+          btn.classList.add("correto");
+        } else if (btn === botaoClicado && opcaoSelecionada !== correta) {
+          btn.classList.add("incorreto");
+        }
+      });
+
+      if (opcaoSelecionada === correta) {
+        pontuacao++;
+        somCorreto.play();
+      } else {
+        somIncorreto.play();
+      }
+
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        indiceAtual++;
+        if (indiceAtual < perguntas.length) {
+          mostrarPergunta();
+          document.body.classList.remove('fade-out');
+        } else {
+          mostrarResultado();
+        }
+      }, 600);
+    }
+
+    function mostrarResultado() {
+      quizEl.style.display = "none";
+      resultadoEl.style.display = "block";
+      resultadoEl.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
+      document.body.classList.remove('fade-out');
+    }
+
+    function voltarComAnimacao(event) {
+      event.preventDefault();
+      document.body.classList.add('fade-out-voltar');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 600);
+    }
+
+    mostrarPergunta();
+  </script>
+</body>
+</html>
